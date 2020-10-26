@@ -6,7 +6,7 @@ url = "http://football-frenzy.s3-website.eu-north-1.amazonaws.com/api"
 r = requests.get(url)
 seasons = r.json()
 seasons = seasons["seasons"]
-teams= []
+
 line = "-" *30
 def errorproof():
   try:
@@ -23,6 +23,7 @@ def printseasons():
   errorproof()
 
 def chooseseason():
+    teams= []
     print(line)
     print("which season would you like to view?")
     answer = input(">")
@@ -52,8 +53,6 @@ def chooseseason():
                             team["draws"] += 1
                             team["points"]+= 1
         print(line)
-        print(" Team Name | Wins | Losses | Draws | Points |")
-        print(line)
         def TakePoints(elem):
             return elem["points"]
         teams.sort(key=TakePoints, reverse=True)
@@ -76,10 +75,14 @@ instructions = {
 while True:
     os.system("clear")
     print(line)
+    print("       Football Frenzy")
+    print("         Stat Viewer")
+    print("             1.0.0")
+    print(line)
     print("List  |  List avaible seasons")
     print("View  |  View table for season")
     print("Exit  |  Exit the program")
-    function = input(">").title()
+    function = input("> ").title()
     try: 
         instructions[function]()
     except (KeyError, ValueError):
